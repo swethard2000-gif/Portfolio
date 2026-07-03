@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swetha R D — Frontend Developer</title>
+<meta name="description" content="Swetha R D — Angular Frontend Developer with 3.7 years of experience building scalable SPAs, dashboards and enterprise web applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E14;
+    --panel:#12151d;
+    --panel-2:#171b26;
+    --line:#242938;
+    --line-soft:#1b1f2c;
+    --paper:#EDEFF4;
+    --muted:#8792a8;
+    --muted-2:#5c6478;
+    --teal:#5EEAD4;
+    --teal-dim:#5EEAD433;
+    --amber:#F5B963;
+    --rose:#EC6A63;
+    --radius:10px;
+    --maxw:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  ::selection{ background:var(--teal); color:var(--ink); }
+
+  a{ color:inherit; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; margin:0; letter-spacing:-0.01em; }
+
+  .mono{ font-family:'JetBrains Mono',monospace; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--teal);
+    letter-spacing:0.02em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;height:1px;background:var(--teal);
+    display:inline-block;
+  }
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,20,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{
+    font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--paper);
+  }
+  .brand span{ color:var(--teal); }
+  nav.links{ display:flex; gap:28px; font-size:14px; }
+  nav.links a{
+    text-decoration:none; color:var(--muted); transition:color .2s;
+  }
+  nav.links a:hover, nav.links a:focus-visible{ color:var(--teal); }
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace; font-size:13px;
+    border:1px solid var(--teal-dim); color:var(--teal);
+    padding:8px 14px; border-radius:6px; text-decoration:none;
+    transition:background .2s, color .2s;
+  }
+  .nav-cta:hover{ background:var(--teal); color:var(--ink); }
+
+  @media (max-width: 760px){
+    nav.links{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:86px 0 70px;
+    border-bottom:1px solid var(--line-soft);
+    background:
+      radial-gradient(ellipse 700px 400px at 82% -10%, #1a2a2b 0%, transparent 60%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+
+  .hero h1{
+    font-size:clamp(36px,5vw,56px);
+    line-height:1.05;
+    font-weight:600;
+  }
+  .hero h1 .role{ color:var(--teal); }
+  .hero p.sub{
+    color:var(--muted); font-size:17px; max-width:52ch; margin:20px 0 30px;
+  }
+  .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px;
+    padding:12px 20px; border-radius:7px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid transparent; transition:transform .15s ease, background .2s, border-color .2s;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn.primary{ background:var(--teal); color:var(--ink); font-weight:600; }
+  .btn.primary:hover{ background:#7ff3e0; }
+  .btn.ghost{ border-color:var(--line); color:var(--paper); }
+  .btn.ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  .stat-row{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:34px;
+  }
+  .stat-chip{
+    border:1px solid var(--line); border-radius:999px;
+    padding:7px 14px; font-size:12.5px; font-family:'JetBrains Mono',monospace;
+    color:var(--muted); background:var(--panel);
+  }
+  .stat-chip b{ color:var(--paper); font-weight:600; }
+
+  /* editor card */
+  .editor{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .editor-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:11px 14px; border-bottom:1px solid var(--line);
+    background:var(--panel-2);
+  }
+  .dot{ width:10px; height:10px; border-radius:50%; }
+  .dot.r{ background:#EC6A63; } .dot.y{ background:#F5B963; } .dot.g{ background:#5EEAD4; }
+  .editor-fname{
+    margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted);
+  }
+  .editor-body{
+    padding:22px 20px; font-family:'JetBrains Mono',monospace; font-size:13.4px;
+    color:#c7cde0; overflow-x:auto;
+  }
+  .editor-body .ln{ color:#464e63; display:inline-block; width:20px; user-select:none; }
+  .tok-key{ color:#EC6A63; }
+  .tok-tag{ color:var(--teal); }
+  .tok-attr{ color:var(--amber); }
+  .tok-str{ color:#a8d67c; }
+  .tok-com{ color:#5c6478; }
+  .caret{
+    display:inline-block; width:7px; height:15px; background:var(--teal);
+    animation:blink 1s steps(1) infinite; vertical-align:text-bottom; margin-left:2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- section shells ---------- */
+  section{ padding:88px 0; border-bottom:1px solid var(--line-soft); }
+  .section-head{ margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(26px,3vw,34px); font-weight:600; }
+  .tag-close{ color:var(--muted-2); font-family:'JetBrains Mono',monospace; font-size:13px; margin-top:44px; }
+
+  /* ---------- summary ---------- */
+  .summary-text{ font-size:18px; color:#cfd4e2; max-width:74ch; }
+  .summary-text b{ color:var(--teal); font-weight:600; }
+
+  /* ---------- achievements ---------- */
+  .ach-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  @media (max-width:760px){ .ach-grid{ grid-template-columns:1fr; } }
+  .ach-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px; display:flex; gap:16px; align-items:flex-start;
+  }
+  .ach-num{
+    font-family:'JetBrains Mono',monospace; color:var(--teal); font-size:13px;
+    border:1px solid var(--teal-dim); border-radius:6px; padding:4px 9px; flex-shrink:0;
+  }
+  .ach-card p{ margin:0; color:#cfd4e2; font-size:15px; }
+  .ach-card p b{ color:var(--paper); }
+
+  /* ---------- skills ---------- */
+  .import-block{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px; color:#c7cde0;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; margin-bottom:34px; overflow-x:auto;
+  }
+  .skills-groups{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:900px){ .skills-groups{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .skills-groups{ grid-template-columns:1fr; } }
+  .skill-group h3{
+    font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--muted);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px; font-weight:500;
+  }
+  .chip-list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-size:13px; padding:6px 11px; border-radius:6px;
+    background:var(--panel-2); border:1px solid var(--line); color:#dfe3ee;
+  }
+
+  /* ---------- experience timeline ---------- */
+  .timeline{ position:relative; padding-left:34px; }
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(var(--teal), var(--line) 90%);
+  }
+  .tl-item{ position:relative; padding-bottom:44px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{
+    position:absolute; left:-34px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--teal);
+  }
+  .tl-head{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin-bottom:4px;
+  }
+  .tl-head h3{ font-size:19px; font-weight:600; }
+  .tl-ver{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--teal);
+    border:1px solid var(--teal-dim); padding:2px 8px; border-radius:999px;
+  }
+  .tl-meta{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted-2);
+    margin-bottom:12px;
+  }
+  .tl-item ul{ margin:0; padding-left:18px; color:#cfd4e2; font-size:15px; }
+  .tl-item li{ margin-bottom:6px; }
+  .tl-company{
+    font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--muted); margin-bottom:2px;
+  }
+
+  /* ---------- awards / education ---------- */
+  .two-col{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+  @media (max-width:800px){ .two-col{ grid-template-columns:1fr; } }
+  .card-row{ display:flex; flex-direction:column; gap:14px; }
+  .award-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .award-card .title{ font-weight:600; font-size:15.5px; margin-bottom:4px; }
+  .award-card .meta{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--amber); margin-bottom:8px;
+  }
+  .award-card .desc{ color:var(--muted); font-size:14px; }
+
+  .edu-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px; height:fit-content;
+  }
+  .edu-card .degree{ font-weight:600; font-size:16px; margin-bottom:6px; }
+  .edu-card .school{ color:var(--muted); font-size:14px; margin-bottom:14px; }
+  .edu-card .gpa{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--teal);
+    border-top:1px solid var(--line); padding-top:12px;
+  }
+
+  /* ---------- contact / footer ---------- */
+  footer{ padding:80px 0 50px; }
+  .contact-inner{ text-align:center; }
+  .contact-inner .eyebrow{ justify-content:center; }
+  .contact-inner .eyebrow::before{ display:none; }
+  .contact-inner h2{ font-size:clamp(28px,4vw,42px); margin-bottom:16px; }
+  .contact-inner p{ color:var(--muted); max-width:50ch; margin:0 auto 30px; }
+  .contact-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .foot-close{
+    text-align:center; margin-top:70px; font-family:'JetBrains Mono',monospace;
+    font-size:13px; color:var(--muted-2);
+  }
+  .foot-close .teal{ color:var(--teal); }
+
+  [data-reveal]{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  [data-reveal].in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    [data-reveal]{ opacity:1; transform:none; transition:none; }
+    .caret{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar">
+    <div class="brand">swetha<span>.</span>rd</div>
+    <nav class="links">
+      <a href="#summary">Summary</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#awards">Awards</a>
+    </nav>
+    <a class="nav-cta" href="mailto:swethard2000@gmail.com">Get in touch</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">frontend_developer.ts</div>
+      <h1>Swetha R D<br>Angular <span class="role">Frontend Developer</span></h1>
+      <p class="sub">I build scalable SPAs, interactive dashboards, and enterprise web applications with Angular (v11–v20), TypeScript, and RxJS — 3.7 years turning complex data into interfaces people actually trust.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="mailto:swethard2000@gmail.com">Email me</a>
+        <a class="btn ghost" href="tel:+919943681468">+91 99436 81468</a>
+      </div>
+      <div class="stat-row">
+        <span class="stat-chip"><b>3.7</b> yrs experience</span>
+        <span class="stat-chip">Angular <b>v11 → v20</b></span>
+        <span class="stat-chip"><b>90%+</b> unit test coverage</span>
+        <span class="stat-chip"><b>4</b> production platforms shipped</span>
+      </div>
+    </div>
+
+    <div class="editor" data-reveal>
+      <div class="editor-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="editor-fname">swetha.component.ts</span>
+      </div>
+      <div class="editor-body">
+<span class="ln">1</span><span class="tok-com">// Angular · TypeScript · RxJS</span>
+<span class="ln">2</span><span class="tok-key">@Component</span>({
+<span class="ln">3</span>&nbsp;&nbsp;<span class="tok-attr">selector</span>: <span class="tok-str">'app-swetha-rd'</span>,
+<span class="ln">4</span>&nbsp;&nbsp;<span class="tok-attr">standalone</span>: <span class="tok-key">true</span>
+<span class="ln">5</span>})
+<span class="ln">6</span><span class="tok-key">export class</span> <span class="tok-tag">SwethaRD</span> {
+<span class="ln">7</span>&nbsp;&nbsp;<span class="tok-attr">role</span> = <span class="tok-str">'Frontend Developer'</span>;
+<span class="ln">8</span>&nbsp;&nbsp;<span class="tok-attr">experience</span> = <span class="tok-str">'3.7 years'</span>;
+<span class="ln">9</span>&nbsp;&nbsp;<span class="tok-attr">stack</span> = [<span class="tok-str">'Angular'</span>, <span class="tok-str">'RxJS'</span>, <span class="tok-str">'REST'</span>];
+<span class="ln">10</span>&nbsp;&nbsp;<span class="tok-attr">available</span> = <span class="tok-key">true</span><span class="caret"></span>
+<span class="ln">11</span>}</div>
+    </div>
+  </div>
+</section>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="eyebrow">professional_summary</div>
+    <p class="summary-text" data-reveal>Frontend Developer with <b>3.7 years of experience</b> specializing in Angular (v11–v20), TypeScript, JavaScript, HTML5, and CSS3. Expert in building scalable SPAs, interactive dashboards, and enterprise web applications. Skilled in Angular migrations, RxJS, REST APIs, RBAC, unit testing, responsive design, and secure UI architecture. Proven ability to deliver high-quality, performance-optimized applications in Agile/Scrum environments.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">&lt;key-achievements&gt;</div>
+      <h2>What shipping actually looked like</h2>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card" data-reveal><span class="ach-num">01</span><p>Developed <b>interactive dashboards and visualizations</b> — KPIs, charts, timelines, calendars — improving business decision-making.</p></div>
+      <div class="ach-card" data-reveal><span class="ach-num">02</span><p>Led the <b>Angular v14 → v18 migration</b> with zero regression, creating scalable, reusable UI components.</p></div>
+      <div class="ach-card" data-reveal><span class="ach-num">03</span><p>Integrated <b>REST APIs and real-time data binding</b>, enhancing cross-device UI responsiveness.</p></div>
+      <div class="ach-card" data-reveal><span class="ach-num">04</span><p>Delivered <b>admin & workflow enhancements</b>: SLA setup, client configuration, automated email/file workflows.</p></div>
+      <div class="ach-card" data-reveal><span class="ach-num">05</span><p>Improved <b>code quality, security, and UX</b> via 90%+ unit test coverage, RBAC, DAST fixes, and timezone-aware UI.</p></div>
+      <div class="ach-card" data-reveal><span class="ach-num">06</span><p>Designed a <b>GenAI chatbot UI</b>, extending the product's interaction model beyond forms and tables.</p></div>
+    </div>
+    <div class="tag-close">&lt;/key-achievements&gt;</div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">skills.module.ts</div>
+      <h2>Toolkit</h2>
+    </div>
+
+    <div class="import-block" data-reveal>
+<span class="tok-key">import</span> {<br>
+&nbsp;&nbsp;Angular <span class="tok-com">/* v11–v20 */</span>, TypeScript, JavaScript, HTML5, CSS3<br>
+} <span class="tok-key">from</span> <span class="tok-str">'frontend'</span>;
+    </div>
+
+    <div class="skills-groups">
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="chip-list">
+          <span class="chip">Angular 11–20</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Libraries &amp; Tools</h3>
+        <div class="chip-list">
+          <span class="chip">Angular Material</span><span class="chip">Bootstrap</span><span class="chip">D3.js</span><span class="chip">ngx-charts</span><span class="chip">ngx-timeline</span><span class="chip">Git / GitHub</span><span class="chip">Figma</span><span class="chip">Postman</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Core Concepts</h3>
+        <div class="chip-list">
+          <span class="chip">SPA Development</span><span class="chip">RxJS</span><span class="chip">REST APIs</span><span class="chip">State Management</span><span class="chip">RBAC</span><span class="chip">Responsive Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Practices</h3>
+        <div class="chip-list">
+          <span class="chip">Agile / Scrum</span><span class="chip">CI/CD</span><span class="chip">Unit Testing</span><span class="chip">Performance Optimization</span><span class="chip">Security Compliance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">experience.timeline.ts</div>
+      <h2>Where the work happened</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item" data-reveal>
+        <span class="tl-dot"></span>
+        <div class="tl-company">Accenture — Custom Software Engineering Analyst</div>
+        <div class="tl-head"><h3>Synops Application</h3><span class="tl-ver">Angular 20</span></div>
+        <div class="tl-meta">Sep 2022 — Present</div>
+        <ul>
+          <li>Enhanced module performance, usability, and stability.</li>
+          <li>Developed dashboards with charts, dynamic filters, and calendar views.</li>
+          <li>Improved Workqueue features: file downloads, ticket editing, and email workflows.</li>
+          <li>Achieved 90%+ unit test coverage, optimized API handling, and resolved SonarQube issues.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-dot"></span>
+        <div class="tl-company">Accenture — Custom Software Engineering Analyst</div>
+        <div class="tl-head"><h3>AIG — Financial Dashboard</h3><span class="tl-ver">Angular 19</span></div>
+        <div class="tl-meta">Sep 2022 — Present</div>
+        <ul>
+          <li>Built dashboards with KPIs, donut charts, and dynamic tables.</li>
+          <li>Integrated real-time REST APIs and developed timeline visualizations using ngx-timeline.</li>
+          <li>Designed a GenAI chatbot UI, enhancing user interaction.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-dot"></span>
+        <div class="tl-company">Accenture — Custom Software Engineering Analyst</div>
+        <div class="tl-head"><h3>CIP Core Solutions — Insurance Tracking System</h3><span class="tl-ver">Angular 14→18</span></div>
+        <div class="tl-meta">Sep 2022 — Present</div>
+        <ul>
+          <li>Updated component access controls using new APIs and validated across all roles.</li>
+          <li>Tested and fixed portal bugs, improving stability and functionality.</li>
+          <li>Migrated Angular v14 to v18, resolving compatibility and refactoring code.</li>
+          <li>Implemented session timeout from the AHB portal for enhanced security.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-dot"></span>
+        <div class="tl-company">Accenture — Custom Software Engineering Analyst</div>
+        <div class="tl-head"><h3>Marketing Analytics Platform</h3><span class="tl-ver">Angular 11</span></div>
+        <div class="tl-meta">Sep 2022 — Present</div>
+        <ul>
+          <li>Developed analytics and investment dashboards, integrated REST APIs, and applied frontend security fixes.</li>
+          <li>Built modular, reusable components for scalability and responsive design.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap two-col">
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">awards_and_certifications</div>
+        <h2>Recognition</h2>
+      </div>
+      <div class="card-row">
+        <div class="award-card" data-reveal>
+          <div class="title">Integrity Award</div>
+          <div class="meta">Accenture · Aug 2024</div>
+          <div class="desc">Recognized for outstanding performance and project contribution.</div>
+        </div>
+        <div class="award-card" data-reveal>
+          <div class="title">Reinvention with Agentic AI — Learning Program</div>
+          <div class="meta">Stanford University, Human-Centered AI (HAI) · Mar 2026</div>
+          <div class="desc">Applied program on building and reasoning about agentic AI systems.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">education</div>
+        <h2>Foundation</h2>
+      </div>
+      <div class="edu-card" data-reveal>
+        <div class="degree">B.E. Electronics &amp; Communication</div>
+        <div class="school">Karpagam College of Engineering, Coimbatore</div>
+        <div class="gpa">CGPA: 8.7 / 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap contact-inner">
+    <div class="eyebrow">contact.ts</div>
+    <h2>Let's build the next interface.</h2>
+    <p>Open to frontend and Angular-focused roles where dashboards, data, and design discipline meet.</p>
+    <div class="contact-actions">
+      <a class="btn primary" href="mailto:swethard2000@gmail.com">swethard2000@gmail.com</a>
+      <a class="btn ghost" href="tel:+919943681468">+91 99436 81468</a>
+    </div>
+    <div class="foot-close">&lt;<span class="teal">/</span>app-swetha-rd&gt;</div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
